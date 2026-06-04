@@ -236,33 +236,28 @@ Mỗi lần cập nhật trạng thái sản phẩm sẽ tạo một giao dịch
 
 ### Trang chủ tra cứu sản phẩm
 
-![Trang chủ tra cứu sản phẩm](<img width="1550" height="811" alt="Trang chủ tra cứu sản phẩm" src="https://github.com/user-attachments/assets/1c53495f-9ba1-4269-a98e-1985d9a539b4" />
-)
+<img width="1550" height="811" alt="Trang chủ tra cứu sản phẩm" src="https://github.com/user-attachments/assets/1c53495f-9ba1-4269-a98e-1985d9a539b4" />
 
 ### Dashboard quản lý theo vai trò
 
-![Dashboard quản lý theo vai trò](<img width="1487" height="584" alt="Dashboard quản lý theo vai trò" src="https://github.com/user-attachments/assets/975893b1-1576-4932-9166-21fbe7810416" />
-)
+<img width="1487" height="584" alt="Dashboard quản lý theo vai trò" src="https://github.com/user-attachments/assets/975893b1-1576-4932-9166-21fbe7810416" />
 
 ### Form tạo sản phẩm mới
 
-![Form tạo sản phẩm mới](<img width="699" height="737" alt="Form tạo sản phẩm mới" src="https://github.com/user-attachments/assets/37790e20-23ff-495e-9975-aa91e036560a" />
-)
+<img width="699" height="737" alt="Form tạo sản phẩm mới" src="https://github.com/user-attachments/assets/37790e20-23ff-495e-9975-aa91e036560a" />
 
 ### Trang thống kê & phân tích
 
-![Trang thống kê](<img width="1426" height="719" alt="Trang thống kê biểu đồ" src="https://github.com/user-attachments/assets/7fdbf239-6a51-4467-812c-e051258e126f" />
-)
+<img width="1426" height="719" alt="Trang thống kê biểu đồ" src="https://github.com/user-attachments/assets/7fdbf239-6a51-4467-812c-e051258e126f" />
+
 
 ### Mã QR sản phẩm
 
-![Mã QR sản phẩm](<img width="573" height="469" alt="Mã QR sản phẩm" src="https://github.com/user-attachments/assets/4eeef99f-758e-40e3-b46b-4593371b4b1d" />
-)
+<img width="573" height="469" alt="Mã QR sản phẩm" src="https://github.com/user-attachments/assets/4eeef99f-758e-40e3-b46b-4593371b4b1d" />
 
 ### Chi tiết sản phẩm và lịch sử
 
-![Chi tiết sản phẩm](<img width="1358" height="706" alt="Chi tiết sản phẩm với lịch sử" src="https://github.com/user-attachments/assets/6af00ed7-548a-452a-b928-458277861b6f" />
-)
+<img width="1358" height="706" alt="Chi tiết sản phẩm với lịch sử" src="https://github.com/user-attachments/assets/6af00ed7-548a-452a-b928-458277861b6f" /
 ## 12. Hướng phát triển
 
 - Tích hợp **IPFS** để lưu trữ hình ảnh phi tập trung.
