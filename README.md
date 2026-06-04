@@ -1,5 +1,7 @@
-<img width="510" height="737" alt="image" src="https://github.com/user-attachments/assets/e2596dca-60cc-4583-95f8-4d130980809a" />
 
+<p align="center">
+<img width="510" height="737" alt="Screenshot 2026-06-04 133534" src="https://github.com/user-attachments/assets/b531a54b-23e5-47e7-a4f6-0af42f59e741" />
+</p>
 <h2 align="center">
     <a href="https://dainam.edu.vn/vi/khoa-cong-nghe-thong-tin">
     🎓 Faculty of Information Technology (DaiNam University)
