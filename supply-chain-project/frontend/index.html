@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Hệ thống truy xuất nguồn gốc sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .notification-toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 14px 24px;
+            border-radius: 10px;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 14px;
+            font-weight: 500;
+            max-width: 400px;
+            line-height: 1.4;
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        .search-box button:hover {
+            transform: translateY(-2px);
+            background: #5a67d8;
+        }
+        .detail-card {
+            transition: transform 0.2s;
+        }
+        .detail-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 10px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                align-items: center;
+            }
+            .theme-toggle {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🔗 SupplyChain Tracker</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">🏠 Trang chủ</a></li>
+                <li><a href="dashboard.html">📊 Dashboard</a></li>
+                <li><a href="analytics.html">📈 Thống kê</a></li>
+                <li><a href="#" id="connectWallet">🦊 Kết nối ví</a></li>
+                <li><button class="theme-toggle" id="themeToggle" title="Chế độ tối/sáng">🌙</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h2>🔍 Minh bạch chuỗi cung ứng với Blockchain</h2>
+            <p>Quét mã QR hoặc nhập mã sản phẩm để xem toàn bộ lịch sử sản phẩm</p>
+            <div class="search-box">
+                <input type="number" id="productIdInput" placeholder="📦 Nhập mã sản phẩm (ID)" />
+                <button id="trackProductBtn">🔎 Tra cứu</button>
+            </div>
+        </section>
+
+        <section id="productDetails" class="product-details" style="display:none;">
+            <h3>📦 Thông tin sản phẩm</h3>
+            <div class="details-grid" id="detailsContent"></div>
+        </section>
+
+        <section class="features">
+            <h3>✨ Tại sao chọn chúng tôi?</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Dữ liệu bất biến</h4>
+                    <p>Thông tin không thể thay đổi sau khi ghi lên blockchain</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h4>Quét QR dễ dàng</h4>
+                    <p>Nhà sản xuất tạo mã QR riêng cho từng sản phẩm</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h4>Minh bạch toàn cầu</h4>
+                    <p>Bất kỳ ai cũng có thể kiểm tra nguồn gốc sản phẩm</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

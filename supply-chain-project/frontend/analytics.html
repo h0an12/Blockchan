@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê - SupplyChain Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-card .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-card .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        .stat-card .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .chart-container h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+        }
+        canvas {
+            max-height: 300px;
+        }
+        .product-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .export-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-export {
+            background: #4CAF50;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        .btn-export:hover {
+            background: #45a049;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 0.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .filter-bar button {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .dark-mode .stat-card,
+        .dark-mode .chart-container,
+        .dark-mode .panel {
+            background: #2d2d44;
+            color: #eee;
+        }
+        .dark-mode .stat-card .stat-label {
+            color: #aaa;
+        }
+        .dark-mode .filter-bar input,
+        .dark-mode .filter-bar select {
+            background: #3d3d5c;
+            color: #eee;
+            border-color: #5d5d7c;
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .notification-toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 14px 24px;
+            border-radius: 10px;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 14px;
+            font-weight: 500;
+            max-width: 400px;
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            .filter-bar {
+                flex-direction: column;
+            }
+            .filter-bar input, .filter-bar select, .filter-bar button {
+                width: 100%;
+            }
+            .export-buttons {
+                flex-direction: column;
+            }
+            .export-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🔗 SupplyChain Tracker</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">🏠 Trang chủ</a></li>
+                <li><a href="dashboard.html">📊 Dashboard</a></li>
+                <li><a href="analytics.html">📈 Thống kê</a></li>
+                <li><a href="#" id="connectWalletNav">🦊 Kết nối ví</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="dashboard-header">
+            <h2>📈 Thống kê & Phân tích chuỗi cung ứng</h2>
+            <div class="export-buttons">
+                <button class="btn-export" id="exportCSV">📊 Xuất CSV</button>
+                <button class="btn-export" id="exportExcel">📑 Xuất Excel</button>
+                <button class="btn-export" id="printQRBatch">🖨️ In QR hàng loạt</button>
+            </div>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-value" id="totalProducts">0</div>
+                <div class="stat-label">Tổng số sản phẩm</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value" id="validProducts">0</div>
+                <div class="stat-label">Còn hạn sử dụng</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">❌</div>
+                <div class="stat-value" id="expiredProducts">0</div>
+                <div class="stat-label">Hết hạn</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-value" id="totalValue">0</div>
+                <div class="stat-label">Tổng giá trị (ETH)</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-container">
+                <h3>📊 Phân bố theo trạng thái</h3>
+                <canvas id="stateChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>📅 Sản phẩm theo thời gian</h3>
+                <canvas id="timelineChart"></canvas>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>🔍 Tìm kiếm & Lọc sản phẩm</h3>
+            <div class="filter-bar">
+                <input type="text" id="searchInput" placeholder="🔎 Tìm theo tên hoặc ID...">
+                <select id="stateFilter">
+                    <option value="">📌 Tất cả trạng thái</option>
+                    <option value="Created">📝 Đã tạo</option>
+                    <option value="Produced">🏭 Đã sản xuất</option>
+                    <option value="Packed">📦 Đã đóng gói</option>
+                    <option value="In Transit">🚚 Đang vận chuyển</option>
+                    <option value="Delivered">📥 Đã nhận</option>
+                    <option value="Sold">💰 Đã bán</option>
+                    <option value="Expired">⏰ Hết hạn</option>
+                </select>
+                <input type="date" id="dateFromFilter" placeholder="Từ ngày">
+                <input type="date" id="dateToFilter" placeholder="Đến ngày">
+                <button id="resetFilters">🔄 Đặt lại</button>
+            </div>
+            <div id="filteredProductList" class="product-list">
+                <div style="text-align:center; padding:20px;">⏳ Đang tải danh sách sản phẩm...</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>

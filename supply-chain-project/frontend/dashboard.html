@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Dashboard - SupplyChain Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .notification-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 14px 24px;
+            border-radius: 10px;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 14px;
+            font-weight: 500;
+            max-width: 350px;
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        .product-list-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102,126,234,0.3);
+        }
+        button {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        .process-step {
+            transition: all 0.3s ease;
+        }
+        .process-step:hover {
+            transform: translateX(5px);
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 10px;
+            color: #333;
+        }
+        body.dark-mode .theme-toggle {
+            color: #eee;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                align-items: center;
+            }
+            .theme-toggle {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🔗 SupplyChain Tracker</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">🏠 Trang chủ</a></li>
+                <li><a href="dashboard.html">📊 Dashboard</a></li>
+                <li><a href="analytics.html">📈 Thống kê</a></li>
+                <li><a href="#" id="walletStatus" style="cursor: pointer;">🔌 Chưa kết nối</a></li>
+                <li><button class="theme-toggle" id="themeToggle" title="Chế độ tối/sáng">🌙</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="dashboard-header">
+            <h2>📊 Quản lý chuỗi cung ứng</h2>
+            <div class="role-selector">
+                <label>🎭 Vai trò:</label>
+                <select id="roleSelect">
+                    <option value="manufacturer">🏭 Nhà sản xuất</option>
+                    <option value="packager">📦 Đơn vị đóng gói</option>
+                    <option value="distributor">🚚 Vận chuyển</option>
+                    <option value="retailer">🏪 Cửa hàng</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Panel tạo sản phẩm (chỉ hiện với manufacturer) -->
+            <div class="panel" id="createProductPanel">
+                <h3>✨ Tạo sản phẩm mới</h3>
+                <form id="createProductForm">
+                    <input type="text" placeholder="📦 Tên sản phẩm" id="productName" required>
+                    <textarea placeholder="📝 Mô tả" id="productDesc" rows="3" required></textarea>
+                    <input type="text" placeholder="🌍 Xuất xứ" id="productOrigin" required>
+                    <input type="number" placeholder="📅 Số ngày bảo hành" id="expiryDays" min="1" value="365" required>
+                    <input type="number" placeholder="💰 Giá (ETH)" id="productPrice" step="0.001" min="0.001" value="0.01" required>
+                    <input type="file" id="productImage" accept="image/*">
+                    <small style="color: #666; margin-top: -5px;">📷 Ảnh sản phẩm (không bắt buộc)</small>
+                    <button type="submit">🚀 Tạo sản phẩm</button>
+                </form>
+            </div>
+
+            <!-- Panel cập nhật trạng thái -->
+            <div class="panel" id="updateStatePanel">
+                <h3>🔄 Cập nhật trạng thái sản phẩm</h3>
+                <form id="updateStateForm">
+                    <input type="number" placeholder="🔢 Mã sản phẩm (ID)" id="updateProductId" required>
+                    <select id="newStateSelect" required>
+                        <option value="produce">🏭 Bắt đầu sản xuất</option>
+                        <option value="pack">📦 Đóng gói</option>
+                        <option value="ship">🚚 Vận chuyển</option>
+                        <option value="receive">📥 Nhận hàng</option>
+                        <option value="sell">💰 Bán cho khách</option>
+                    </select>
+                    <input type="text" placeholder="👤 Địa chỉ ví đối tác (nếu cần)" id="partnerAddress">
+                    <button type="submit">✅ Cập nhật</button>
+                </form>
+            </div>
+
+            <!-- Danh sách sản phẩm -->
+            <div class="panel" id="productListPanel">
+                <h3>📋 Danh sách sản phẩm</h3>
+                <div id="productList">
+                    <div style="text-align:center; padding:20px;">⏳ Đang tải danh sách sản phẩm...</div>
+                </div>
+            </div>
+
+            <!-- Panel quy trình chuỗi cung ứng -->
+            <div class="panel" id="processFlowPanel">
+                <h3>🔄 Quy trình chuỗi cung ứng</h3>
+                <div style="text-align:center; padding:20px;">⏳ Đang tải quy trình...</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
