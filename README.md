@@ -236,25 +236,25 @@ Mỗi lần cập nhật trạng thái sản phẩm sẽ tạo một giao dịch
 
 ### Trang chủ tra cứu sản phẩm
 
-![Trang chủ tra cứu sản phẩm](images/trang-chu-tra-cuu-san-pham.png)
+![Trang chủ tra cứu sản phẩm](h0an12/Blockchan/img/Trang chủ tra cứu sản phẩm.png)
 
 ### Dashboard quản lý theo vai trò
 
-![Dashboard quản lý theo vai trò](images/dashboard-quan-ly-theo-vai-tro.png)
+![Dashboard quản lý theo vai trò](h0an12/Blockchan/img/Dashboard quản lý theo vai trò.png)
 
 ### Form tạo sản phẩm mới
 
-![Form tạo sản phẩm mới](h0an12/Blockchan/Form tạo sản phẩm mới.png)
+![Form tạo sản phẩm mới](h0an12/Blockchan/img/Form tạo sản phẩm mới.png)
 
 ### Trang thống kê & phân tích
 
-![Trang thống kê](images/trang-thong-ke-bieu-do.png)
+![Trang thống kê](h0an12/Blockchan/img/Trang thống kê biểu đồ.png)
 
 ### Mã QR sản phẩm
 
-![Mã QR sản phẩm](images/ma-qr-san-pham.png)
+![Mã QR sản phẩm](h0an12/Blockchan/img/Mã QR sản phẩm.png)
 
 ### Chi tiết sản phẩm và lịch sử
 
-![Chi tiết sản phẩm](images/chi-tiet-san-pham-lich-su.png)
+![Chi tiết sản phẩm](h0an12/Blockchan/img/Chi tiết sản phẩm với lịch sử.png)
 
