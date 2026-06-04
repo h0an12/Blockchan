@@ -257,7 +257,7 @@ Mỗi lần cập nhật trạng thái sản phẩm sẽ tạo một giao dịch
 
 ### Chi tiết sản phẩm và lịch sử
 
-<img width="1358" height="706" alt="Chi tiết sản phẩm với lịch sử" src="https://github.com/user-attachments/assets/6af00ed7-548a-452a-b928-458277861b6f" /
+<img width="1358" height="706" alt="Chi tiết sản phẩm với lịch sử" src="https://github.com/user-attachments/assets/6af00ed7-548a-452a-b928-458277861b6f" />
 ## 12. Hướng phát triển
 
 - Tích hợp **IPFS** để lưu trữ hình ảnh phi tập trung.
