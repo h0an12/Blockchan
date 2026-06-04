@@ -244,7 +244,7 @@ Mỗi lần cập nhật trạng thái sản phẩm sẽ tạo một giao dịch
 
 ### Form tạo sản phẩm mới
 
-![Form tạo sản phẩm mới](images/form-tao-san-pham-moi.png)
+![Form tạo sản phẩm mới](h0an12/Blockchan/Form tạo sản phẩm mới.png)
 
 ### Trang thống kê & phân tích
 
