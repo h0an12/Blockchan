@@ -257,4 +257,28 @@ Mỗi lần cập nhật trạng thái sản phẩm sẽ tạo một giao dịch
 ### Chi tiết sản phẩm và lịch sử
 
 ![Chi tiết sản phẩm](h0an12/Blockchan/img/Chi tiết sản phẩm với lịch sử.png)
+## 12. Hướng phát triển
+
+- Tích hợp **IPFS** để lưu trữ hình ảnh phi tập trung.
+- Bổ sung **vai trò kiểm định chất lượng**.
+- Tích hợp **AI** phát hiện bất thường trong chuỗi cung ứng.
+- Xây dựng **Mobile App Android/iOS**.
+- Tích hợp **IoT Sensors** theo dõi nhiệt độ và độ ẩm.
+- Theo dõi **Carbon Footprint** và chứng chỉ xanh.
+- Hỗ trợ đa blockchain (Ethereum, Polygon, BNB Chain).
+
+---
+
+## 📧 Liên hệ
+
+**LÊ BÁ HOAN **
+📩 Email: lebahoan1812@gmail.com
+
+---
+<div align="center">
+
+### SupplyChain Tracker
+Blockchain-based Product Traceability System
+Made with ❤️ by AIoTLab - DaiNam University
+</div>
 
