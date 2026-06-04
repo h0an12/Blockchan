@@ -233,3 +233,28 @@ Mỗi lần cập nhật trạng thái sản phẩm sẽ tạo một giao dịch
 | 5 | Dữ liệu được ghi lên blockchain |
 | 6 | Lịch sử sản phẩm được cập nhật |
 ## 11. Hình ảnh minh họa
+
+### Trang chủ tra cứu sản phẩm
+
+![Trang chủ tra cứu sản phẩm](images/trang-chu-tra-cuu-san-pham.png)
+
+### Dashboard quản lý theo vai trò
+
+![Dashboard quản lý theo vai trò](images/dashboard-quan-ly-theo-vai-tro.png)
+
+### Form tạo sản phẩm mới
+
+![Form tạo sản phẩm mới](images/form-tao-san-pham-moi.png)
+
+### Trang thống kê & phân tích
+
+![Trang thống kê](images/trang-thong-ke-bieu-do.png)
+
+### Mã QR sản phẩm
+
+![Mã QR sản phẩm](images/ma-qr-san-pham.png)
+
+### Chi tiết sản phẩm và lịch sử
+
+![Chi tiết sản phẩm](images/chi-tiet-san-pham-lich-su.png)
+
