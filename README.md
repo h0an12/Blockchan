@@ -1,6 +1,6 @@
 
 <p align="center">
-<img width="510" height="737" alt="Screenshot 2026-06-04 133534" src="https://github.com/user-attachments/assets/b531a54b-23e5-47e7-a4f6-0af42f59e741" />
+<img width="512" height="745" alt="post" src="https://github.com/user-attachments/assets/df8e0435-8803-42d4-8e26-4af9ba0efb35" />
 </p>
 <h2 align="center">
     <a href="https://dainam.edu.vn/vi/khoa-cong-nghe-thong-tin">
